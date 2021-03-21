@@ -33,21 +33,21 @@ class NearEarthObject:
     initialized to an empty collection, but eventually populated in the
     `NEODatabase` constructor.
     """
-    def __init__(self, designation,  name=None, diameter='nan', hazardous='N'):
+    def __init__(self, designation,  name, diameter, hazardous):
         """Create a new `NearEarthObject`.
 
         :param designation: The primary designation of this NEO (unique identifier)
         :type designation: str
-        :param name: The International Astronomical Union (IAU) name of this NEO, defaults to None
-        :type name: str, optional
-        :param diameter: The diameter of this NEO in kilometers, defaults to 'nan'
-        :type diameter: str, optional
-        :param hazardous: whether NASA has marked the NEO as a "Potentially Hazardous Asteroid", defaults to 'N'
-        :type hazardous: str, optional
+        :param name: The International Astronomical Union (IAU) name of this NEO
+        :type name: str
+        :param diameter: The diameter of this NEO in kilometers
+        :type diameter: str
+        :param hazardous: whether NASA has marked the NEO as a "Potentially Hazardous Asteroid"
+        :type hazardous: str
         """
         self.designation = designation
         self.name = name if name != '' else None
-        self.diameter = float(diameter)
+        self.diameter = float(diameter) if diameter != '' else float('nan')
         self.hazardous = hazardous == 'Y'
 
         # Create an empty initial collection of linked approaches.
@@ -124,8 +124,8 @@ class CloseApproach:
 
     def __str__(self):
         """Return `str(self)`."""
-        return f"On {self.time_str} NEO {self._designation} approaches Earth at a distance of {self.distance} au" \
-               f" and a velocity of {self.velocity} km/s."
+        return f"On {self.time_str} '{self._designation}' approaches Earth at a distance of {self.distance:.2f} au" \
+               f" and a velocity of {self.velocity:.2f} km/s."
 
     def __repr__(self):
         """Return `repr(self)`, a computer-readable string representation of this object."""
