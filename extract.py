@@ -26,17 +26,12 @@ def load_neos(neo_csv_path):
     """
     neos = []
     with open(neo_csv_path) as f:
-        reader = csv.reader(f)
-        labels = next(reader)
-        designation_index = labels.index('pdes')
-        name_index = labels.index('name')
-        diameter_index = labels.index('diameter')
-        hazardous_index = labels.index('pha')
-        for line in reader:
-            neo = NearEarthObject(line[designation_index],
-                                  line[name_index],
-                                  line[diameter_index],
-                                  line[hazardous_index])
+        reader = csv.DictReader(f)
+        for row in reader:
+            neo = NearEarthObject(row['pdes'],
+                                  row['name'],
+                                  row['diameter'],
+                                  row['pha'])
             neos.append(neo)
     return neos
 
