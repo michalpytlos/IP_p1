@@ -33,6 +33,7 @@ class NearEarthObject:
     initialized to an empty collection, but eventually populated in the
     `NEODatabase` constructor.
     """
+
     def __init__(self, designation,  name, diameter, hazardous):
         """Create a new `NearEarthObject`.
 
@@ -74,7 +75,7 @@ class NearEarthObject:
                 f"diameter={self.diameter:.3f}, hazardous={self.hazardous!r})")
 
     def serialize(self):
-        """Return serialized representation of this object"""
+        """Return serialized representation of this object."""
         return {
             'designation': self.designation,
             'name': self.name,
@@ -96,6 +97,7 @@ class CloseApproach:
     private attribute, but the referenced NEO is eventually replaced in the
     `NEODatabase` constructor.
     """
+
     def __init__(self, designation, time, distance, velocity):
         """Create a new `CloseApproach`.
 
@@ -142,7 +144,7 @@ class CloseApproach:
                 f"velocity={self.velocity:.2f}, neo={self.neo!r})")
 
     def serialize(self):
-        """Return serialized representation of this object"""
+        """Return serialized representation of this object."""
         return {
             'datetime_utc': self.time_str,
             'distance_au': self.distance,

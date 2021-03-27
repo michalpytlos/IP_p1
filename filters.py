@@ -39,6 +39,7 @@ class AttributeFilter:
     Concrete subclasses can override the `get` classmethod to provide custom
     behavior to fetch a desired attribute from the given `CloseApproach`.
     """
+
     def __init__(self, op, value):
         """Construct a new `AttributeFilter` from an binary predicate and a reference value.
 
@@ -70,57 +71,68 @@ class AttributeFilter:
         raise UnsupportedCriterionError
 
     def __repr__(self):
+        """Return `repr(self)`."""
         return f"{self.__class__.__name__}(op=operator.{self.op.__name__}, value={self.value})"
 
 
 class DistanceFilter(AttributeFilter):
-    """Filter on the distance of a close approach
+    """Filter on the distance of a close approach.
 
     `DistanceFilter` represents the search criteria pattern comparing distance
     of a close approach to a reference value.
     """
+
     @classmethod
     def get(cls, approach):
+        """Get distance of a close approach."""
         return approach.distance
 
 
 class VelocityFilter(AttributeFilter):
-    """Filter on the velocity of a close approach
+    """Filter on the velocity of a close approach.
 
     `VelocityFilter` represents the search criteria pattern comparing velocity
     of a close approach to a reference value.
     """
+
     @classmethod
     def get(cls, approach):
+        """Get velocity of a close approach."""
         return approach.velocity
 
 
 class DiameterFilter(AttributeFilter):
-    """Filter on the diameter of the NEO attached to a close approach
+    """Filter on the diameter of the NEO attached to a close approach.
 
     `DiameterFilter` represents the search criteria pattern comparing diameter
     of the NEO attached to a close approach to a reference value.
     """
+
     @classmethod
     def get(cls, approach):
+        """Get diameter of the NEO attached to a close approach."""
         return approach.neo.diameter
 
 
 class DateFilter(AttributeFilter):
-    """Filter on the date of a close approach
+    """Filter on the date of a close approach.
 
     `DateFilter` represents the search criteria pattern comparing date
     of a close approach to a reference value.
     """
+
     @classmethod
     def get(cls, approach):
+        """Get date of a close approach."""
         return approach.time.date()
 
 
 class HazardousFilter(AttributeFilter):
-    """Filter on the hazardous property of the NEO attached to a close approach"""
+    """Filter on the hazardous property of the NEO attached to a close approach."""
+
     @classmethod
     def get(cls, approach):
+        """Get the hazardous property of the NEO attached to a close approach."""
         return approach.neo.hazardous
 
 
